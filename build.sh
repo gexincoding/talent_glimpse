@@ -12,4 +12,4 @@ go build -o ./output/${RUN_NAME}
 
 cd ./output
 
-chmod +x ${RUN_NAME}
+

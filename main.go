@@ -27,8 +27,10 @@ func main() {
 	}
 
 	{
-
+		recruitmentRouter := router.Group("recruitment")
+		recruitmentRouter.POST("/CreateRecruitmentInfo", handlers.CreateRecruitmentInfo)
 	}
+
 	err = r.Run(":23462")
 	if err != nil {
 		return
