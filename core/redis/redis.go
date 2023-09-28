@@ -8,14 +8,14 @@ import (
 	"talent_glimpse/core/config"
 )
 
-var Rdb *redis.Client
+var Client *redis.Client
 
 func Init(conf config.RedisConfig) error {
-	Rdb = redis.NewClient(&redis.Options{
+	Client = redis.NewClient(&redis.Options{
 		Addr:     conf.Addr,
 		Password: conf.Pass,
 	})
-	if Rdb == nil {
+	if Client == nil {
 		err := errors.New("init redis err")
 		log.Println(fmt.Errorf("init redis error: %v", err))
 		return err

@@ -1,21 +1,39 @@
 package main
 
 import (
-	"context"
+	"errors"
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"log"
 	"talent_glimpse/core/config"
 	"talent_glimpse/core/database"
 	"talent_glimpse/core/redis"
-	"time"
+	"talent_glimpse/handlers"
 )
 
 func main() {
+
 	err := Init()
 	if err != nil {
-		log.Println(fmt.Errorf("init error: %v", err))
+		panic(errors.New("main init failed"))
 	}
-	redis.Rdb.Set(context.Background(), "k1", "v1", 100*time.Second)
+	r := gin.Default()
+
+	router := r.Group("/talent_glimpse/v1")
+	{
+		testRouter := router.Group("")
+		testRouter.GET("/Ping", handlers.Ping)
+		testRouter.POST("/Ping", handlers.Ping)
+	}
+
+	{
+
+	}
+	err = r.Run(":23462")
+	if err != nil {
+		return
+	}
+
 }
 
 func Init() error {
