@@ -27,7 +27,7 @@ type RedisConfig struct {
 }
 
 func Init() error {
-	conf, err := ioutil.ReadFile("core/config/conf.json")
+	conf, err := ioutil.ReadFile("conf/conf.json")
 	if err != nil {
 		log.Println(fmt.Errorf("read conf err: %v", err))
 		return err
