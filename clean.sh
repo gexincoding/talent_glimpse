@@ -1,4 +1,6 @@
 #!/bin/zsh
+rm -rf output
+
 if lsof -i :23462 >/dev/null; then
 
     pid=$(lsof -i :23462 | grep LISTEN | awk '{print $2}')
