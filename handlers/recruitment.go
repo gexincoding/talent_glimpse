@@ -20,6 +20,8 @@ func CreateRecruitmentInfo(ctx *gin.Context) {
 			},
 		})
 		return
+
+		//dciowdciwhdiowhiwehiowehcoiwehoiwec
 	}
 
 }

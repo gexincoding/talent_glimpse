@@ -4,12 +4,31 @@ import (
 	"errors"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 	"log"
 	"talent_glimpse/core/config"
 	"talent_glimpse/core/database"
 	"talent_glimpse/core/redis"
 	"talent_glimpse/handlers"
 )
+
+type User struct {
+	gorm.Model
+	Name  string
+	Email string `gorm:"unique"`
+	Age   int
+}
+
+func Test() {
+	//redis.Client.Set(context.Background(), "kkkk", "vvvv", 20*time.Second)
+	////database.DB.AutoMigrate(&User{})
+	//user := User{
+	//	Name:  "John Doe",
+	//	Email: "johndoe@example.com",
+	//	Age:   25,
+	//}
+	//database.DB.Create(&user)
+}
 
 func main() {
 
@@ -30,6 +49,19 @@ func main() {
 		recruitmentRouter := router.Group("recruitment")
 		recruitmentRouter.POST("/CreateRecruitmentInfo", handlers.CreateRecruitmentInfo)
 	}
+
+	{
+
+	}
+
+	{
+
+	}
+
+	{
+
+	}
+	Test()
 
 	err = r.Run(":23462")
 	if err != nil {
