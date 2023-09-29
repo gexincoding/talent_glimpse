@@ -8,7 +8,7 @@ import (
 	"talent_glimpse/core/config"
 )
 
-var DB *gorm.DB
+var Client *gorm.DB
 
 func Init(conf config.MySQLConfig) error {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", conf.User, conf.Pass, conf.Host, conf.Name)
@@ -18,6 +18,6 @@ func Init(conf config.MySQLConfig) error {
 		log.Println(fmt.Errorf("open gorm err: %v", err))
 		return err
 	}
-	DB = db
+	Client = db
 	return nil
 }
