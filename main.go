@@ -5,11 +5,18 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"log"
+	"talent_glimpse/common/rdb"
 	"talent_glimpse/core/config"
 	"talent_glimpse/core/database"
-	"talent_glimpse/core/redis"
+	"talent_glimpse/core/rds"
 	"talent_glimpse/handlers"
+	"time"
 )
+
+func Test() {
+	rdb.Set("1", "11", time.Second*100)
+	rdb.HMSet("test", map[string]string{"11": "222"})
+}
 
 func main() {
 
@@ -27,9 +34,11 @@ func main() {
 	}
 
 	{
-		recruitmentRouter := router.Group("recruitment")
+		recruitmentRouter := router.Group("/recruitment")
 		recruitmentRouter.POST("/CreateRecruitmentInfo", handlers.CreateRecruitmentInfo)
 	}
+
+	Test()
 
 	err = r.Run(":23462")
 	if err != nil {
@@ -49,9 +58,9 @@ func Init() error {
 		log.Println(fmt.Errorf("database init error: %v", err))
 		return err
 	}
-	err = redis.Init(config.TalentGlimpseConfig.RedisConfig)
+	err = rds.Init(config.TalentGlimpseConfig.RedisConfig)
 	if err != nil {
-		log.Println(fmt.Errorf("redis init error: %v", err))
+		log.Println(fmt.Errorf("rdb init error: %v", err))
 		return err
 	}
 	return nil
