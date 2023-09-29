@@ -8,8 +8,4 @@ mkdir -p output output/conf
 
 find conf -type f | xargs -I{} cp {} ./output/conf/
 
-go build -o ./output/${RUN_NAME}
-
-cd ./output
-
-
+go build -o ./output/${RUN_NAME} main.go
