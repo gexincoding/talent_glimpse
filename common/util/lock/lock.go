@@ -58,7 +58,7 @@ func AcquireLock(key string, ttl time.Duration, timeout ...time.Duration) bool {
 	}
 
 	acquireLock := func() bool {
-		ok, err := rdb.SetNX(key, "value", ttl)
+		ok, err := rdb.SetNX(key, "test", ttl)
 		if err != nil || !ok {
 			//logs.Warn("acquire lock error, err: %v key: %s ttl: %v", err, key, ttl)
 			return false

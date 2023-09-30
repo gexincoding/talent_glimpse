@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"talent_glimpse/common/rdb"
+	"talent_glimpse/common/util"
 	"talent_glimpse/core/config"
 	"talent_glimpse/core/database"
 	"talent_glimpse/core/rds"
@@ -16,6 +17,7 @@ import (
 func Test() {
 	rdb.Set("1", "11", time.Second*100)
 	rdb.HMSet("test", map[string]string{"11": "222"})
+	rdb.RefreshList("refresh", []interface{}{"a", "b", "c"})
 }
 
 func main() {
@@ -48,6 +50,8 @@ func main() {
 }
 
 func Init() error {
+	// 当前进程的ID
+	util.ProcessID = util.NewID()
 	err := config.Init()
 	if err != nil {
 		log.Println(fmt.Errorf("config init error: %v", err))
