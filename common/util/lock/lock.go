@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-// Acquire a lock by SetNX
+// AcquireLock Acquire a lock by SetNX
 func AcquireLock(key string, ttl time.Duration, timeout ...time.Duration) bool {
 	endTime := time.Now()
 	if len(timeout) != 0 && timeout[0] != 0 {
@@ -34,7 +34,7 @@ func AcquireLock(key string, ttl time.Duration, timeout ...time.Duration) bool {
 	}
 }
 
-// Release a lock
+// ReleaseLock Release a lock
 func ReleaseLock(key string) {
 	if n, err := rdb.Del(key); err != nil {
 		log.Printf("[Warn] release lock error, err: %s key: %s", err, key)
@@ -52,7 +52,7 @@ func ExpireLock(key string, ttl time.Duration) {
 	}
 }
 
-// ExpireLock reset lock ttl
+// ExpireAtLock  reset lock ttl
 func ExpireAtLock(key string, time time.Time) bool {
 	ok, err := rdb.ExpireAt(key, time)
 	if err != nil {
