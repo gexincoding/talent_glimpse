@@ -6,50 +6,6 @@ import (
 	"time"
 )
 
-/*
-
-// Redis is rdb client
-var (
-	Base                       = "fcdn_bizapi_"
-	BaseICP                    = "fcdn_bizapi_icp_"
-	GlobalUpdateLockKey        = Base + "global_update_lock"
-	GlobalUpdateLockMonitorKey = Base + "global_update_lock_monitor"
-	GlobalCertAlarmLockKey     = Base + "global_cert_alarm"
-	GlobalCertUpdateLockKey    = Base + "global_cert_update_lock"
-	GlobalUpdateLockTTL        = time.Second * 3
-
-	historyPrefix = "stream_history_info_"
-
-	MonitorKeysTTL  = time.Minute * 3
-	MonitorKeyAll   = Base + "monitor:all"
-	MonitorKeyIn    = Base + "monitor:in"
-	MonitorKeyNotIn = Base + "monitor:not_in"
-
-	CertCacheKey = Base + "cert:"
-	CertJudgeKey = Base + "cert_judge:"
-)*/
-
-/*// Initialize rdb client according to config
-func InitRedis(conf config.RedisConfig) error {
-	if conf.Psm == "" {
-		return nil
-	}
-	var err error
-	option := goredis.NewOption()
-	option.MaxRetries = 10 // retry times
-	if env.IsProduct() || len(conf.Hosts) == 0 {
-		Redis, err = goredis.NewClientWithOption(conf.Psm, option)
-	} else {
-		option.DisableAutoLoadConf()
-		Redis, err = goredis.NewClientWithServers(conf.Psm, conf.Hosts, option)
-	}
-	if err != nil {
-		return errors.Wrap(err, "new client error")
-	}
-
-	return nil
-}
-*/
 // Acquire a lock by SetNX
 func AcquireLock(key string, ttl time.Duration, timeout ...time.Duration) bool {
 	endTime := time.Now()
@@ -107,39 +63,3 @@ func ExpireAtLock(key string, time time.Time) bool {
 	}
 	return ok
 }
-
-/*
-// get all the vhosts which have been pushed stream in 30 days
-func GetAllVhosts(ctx context.Context, user string) (allVhosts []string, err error) {
-	key := Base + historyPrefix + "_all_vhost_" + user
-	return GetAllElementsInSomeDays(ctx, key, int64(30))
-}
-*/
-/*func GetAllPushDomains(ctx context.Context, vhost string) (pushDomains []string, err error) {
-	key := Base + historyPrefix + "all_push_domain_" + vhost
-	return GetAllElementsInSomeDays(ctx, key, int64(30))
-}*/
-
-/*func GetAllApps(ctx context.Context, pushDomain string) (apps []string, err error) {
-	key := Base + historyPrefix + "all_app_" + pushDomain
-	return GetAllElementsInSomeDays(ctx, key, int64(30))
-}*/
-/*
-// 从sorted set里面获取最近30天内的信息， 是个通用封装，用于查询vhost、domain、app信息
-// 使用的基本逻辑是：
-// 找出最近30天推过流的所有vhost
-// 对于每一个vhost，找出最近30天推过流的所有push domain
-// 对于每一个push domain， 找出最近30天推过流的所有app
-func GetAllElementsInSomeDays(ctx context.Context, key string, days int64) (allVhosts []string, err error) {
-	ts := time.Now().Unix()
-	timestampStop := strconv.FormatInt(ts, 10)
-	timestampStart := strconv.FormatInt(ts-86400*days, 10)
-	cmd := Redis.ZRangeByScore(key, redis.ZRangeBy{
-		Min:    timestampStart,
-		Max:    timestampStop,
-		Offset: 0,
-		Count:  -1,
-	})
-	return cmd.Result()
-}
-*/
