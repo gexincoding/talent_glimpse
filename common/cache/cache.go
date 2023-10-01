@@ -1,24 +1,23 @@
 package cache
 
-var (
-	RecruitmentCache = "recruitment_"
-	LoginCache       = "session_"
+import (
+	"fmt"
+	"talent_glimpse/common/rdb"
+	"time"
 )
 
-type Cache struct {
-	Type string //缓存类型
-}
-
-func (Cache) Put(k string, v interface{}) error {
+func Put(cacheName, k string, v interface{}, expireTime time.Duration) error {
+	_, err := rdb.Set(fmt.Sprintf("%s_%s", cacheName, k), v, expireTime)
+	if err != nil {
+		return err
+	}
 	return nil
 }
 
-func (Cache) Get(k string) {
-
+func Get(cacheName, k string) (interface{}, bool) {
+	v, err := rdb.Get(fmt.Sprintf("%s_%s", cacheName, k))
+	if err != nil {
+		return nil, false
+	}
+	return v, true
 }
-
-//
-//
-//func InitCache(){
-//	reCach :=
-//}
