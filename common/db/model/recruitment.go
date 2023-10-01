@@ -8,12 +8,13 @@ import (
 // RecruitmentComment 招聘信息评论表
 type RecruitmentComment struct {
 	gorm.Model
-	Content         string    `gorm:"comment:评论内容"`
-	ParentCommentID uint      `gorm:"comment:父级评论ID"`
-	UserID          uint      `gorm:"comment:评论用户ID"`
-	CommentTime     time.Time `gorm:"comment:评论时间"`
-	Status          int       `gorm:"comment:状态，0未删除，1已删除"`
-	RecruitmentID   uint      `gorm:"comment:招聘信息id"`
+	Content            string    `gorm:"comment:评论内容"`
+	ParentCommentID    uint      `gorm:"comment:父级评论ID"`
+	UserID             uint      `gorm:"comment:评论用户ID"`
+	CommentTime        time.Time `gorm:"comment:评论时间"`
+	Status             int       `gorm:"comment:状态，0未删除，1已删除"`
+	RecruitmentID      uint      `gorm:"comment:招聘信息id"`
+	SequencingStrategy int       `gorm:"comment:排序策略，0代表按照大小排序，1代表按照点赞多少排序"`
 }
 
 type CommentLike struct {

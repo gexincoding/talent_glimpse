@@ -16,6 +16,7 @@ func TestGenerate(t *testing.T) {
 	_ = migrator.DropTable(&model.ReferralInfo{})
 	_ = migrator.DropTable(&model.CareerDirection{})
 	_ = migrator.DropTable(&model.CompanyType{})
+	_ = migrator.DropTable(&model.User{})
 
 	_ = migrator.CreateTable(&model.RecruitmentInfo{})
 	_ = migrator.CreateTable(&model.Company{})
@@ -24,5 +25,6 @@ func TestGenerate(t *testing.T) {
 	_ = migrator.CreateTable(&model.ReferralInfo{})
 	_ = migrator.CreateTable(&model.CareerDirection{})
 	_ = migrator.CreateTable(&model.CompanyType{})
+	_ = migrator.CreateTable(&model.User{})
 
 }

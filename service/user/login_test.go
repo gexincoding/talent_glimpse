@@ -7,5 +7,5 @@ import (
 
 func TestSendEmailVerificationCode(t *testing.T) {
 	_ = config.Init("../../conf/conf.json")
-	SendEmailVerificationCode("837413", "gexincoding@gmail.com")
+	SendEmailVerificationCode("837413", "2832215129@qq.com")
 }
