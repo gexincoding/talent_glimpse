@@ -12,6 +12,7 @@ var TalentGlimpseConfig Config
 type Config struct {
 	MySQLConfig MySQLConfig `json:"MySQLConfig"`
 	RedisConfig RedisConfig `json:"RedisConfig"`
+	EmailConfig EmailConfig `json:"EmailConfig"`
 }
 
 type MySQLConfig struct {
@@ -24,6 +25,13 @@ type MySQLConfig struct {
 type RedisConfig struct {
 	Addr string `json:"Addr"`
 	Pass string `json:"Pass"`
+}
+type EmailConfig struct {
+	From     string `json:"From"`
+	Host     string `json:"Host"`
+	Addr     string `json:"Addr"`
+	Username string `json:"Username"`
+	Pass     string `json:"Pass"`
 }
 
 func Init() error {

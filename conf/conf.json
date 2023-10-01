@@ -8,5 +8,12 @@
   "RedisConfig": {
     "Addr": "43.140.194.131:17483",
     "Pass": "_HUXIWOIOW_DBUe021jwd_01eh1f923uehd1020qio_jdeu9wHDIO"
+  },
+  "EmailConfig": {
+    "From": "WizzStdio <xialinrui@qq.com>",
+    "Host": "smtp.qq.com",
+    "Addr": "smtp.qq.com:25",
+    "Username": "xialinrui@qq.com",
+    "Pass": "kelmagvmdncodfji"
   }
 }

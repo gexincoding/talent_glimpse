@@ -9,5 +9,5 @@ type MetaData struct {
 // T HTTP响应，包含MetaData元数据，及Result返回结果。
 type T struct {
 	MetaData *MetaData   `json:"ResponseMetadata"`
-	Result   interface{} `json:"Result,omitempty"`
+	Result   interface{} `json:"Result"`
 }

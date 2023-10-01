@@ -13,6 +13,7 @@ type RecruitmentComment struct {
 	UserID          uint      `gorm:"comment:评论用户ID"`
 	CommentTime     time.Time `gorm:"comment:评论时间"`
 	Status          int       `gorm:"comment:状态，0未删除，1已删除"`
+	RecruitmentID   uint      `gorm:"comment:招聘信息id"`
 }
 
 type CommentLike struct {
