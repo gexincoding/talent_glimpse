@@ -1,15 +1,15 @@
 package smtp
 
 import (
-	"log"
 	"net/smtp"
 	"talent_glimpse/core/config"
 
 	"github.com/jordan-wright/email"
 )
 
-func SendEmail(to []string, subject, message string) {
+func SendEmail(to []string, subject, message string) error {
 	e := email.NewEmail()
+
 	//设置发送方的邮箱
 	e.From = config.TalentGlimpseConfig.EmailConfig.From
 	addr := config.TalentGlimpseConfig.EmailConfig.Addr
@@ -27,6 +27,7 @@ func SendEmail(to []string, subject, message string) {
 	//设置服务器相关的配置
 	err := e.Send(addr, smtp.PlainAuth("", username, pass, host))
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
+	return nil
 }

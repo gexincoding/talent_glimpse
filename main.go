@@ -52,7 +52,7 @@ func main() {
 func Init() error {
 	// 当前进程的ID
 	util.ProcessID = util.NewID()
-	err := config.Init()
+	err := config.Init("conf/conf.json")
 	if err != nil {
 		log.Println(fmt.Errorf("config init error: %v", err))
 		return err

@@ -34,8 +34,8 @@ type EmailConfig struct {
 	Pass     string `json:"Pass"`
 }
 
-func Init() error {
-	conf, err := ioutil.ReadFile("conf/conf.json")
+func Init(path string) error {
+	conf, err := ioutil.ReadFile(path)
 	if err != nil {
 		log.Println(fmt.Errorf("read conf err: %v", err))
 		return err
