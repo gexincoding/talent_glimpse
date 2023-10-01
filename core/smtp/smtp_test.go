@@ -13,6 +13,6 @@ func TestSMTP(t *testing.T) {
 	if err != nil {
 		return
 	}
-	SendEmail([]string{"gexincoding@gmail.com"}, "Test", "test")
+	SendEmail([]string{"gexincoding@gmail.com"}, "[TalentGlimpse] 请您查收 talent glimpse 验证码，请勿泄露", "验证码是12314")
 
 }
