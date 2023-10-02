@@ -1,6 +1,3 @@
 package _const
 
-const (
-	LoginCache       = "session_"
-	RecruitmentCache = "recruitment_"
-)
+const ()

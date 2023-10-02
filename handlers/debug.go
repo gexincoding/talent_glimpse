@@ -6,5 +6,6 @@ import (
 )
 
 func Ping(ctx *gin.Context) {
+	ctx.Header("k", "v")
 	ctx.String(http.StatusOK, "Pong")
 }

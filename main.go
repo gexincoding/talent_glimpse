@@ -15,13 +15,13 @@ import (
 )
 
 func Test() {
-	rdb.Set("1", "11", time.Second*100)
-	rdb.HMSet("test", map[string]string{"11": "222"})
-	rdb.RefreshList("refresh", []interface{}{"a", "b", "c"})
+	rdb.Set("testtesttest", "11111111", time.Second*100)
+	//rdb.HMSet("test", map[string]string{"11": "222"})
+	//rdb.RefreshList("refresh", []interface{}{"a", "b", "c"})
 }
 
 func main() {
-
+	// 初始化：连接需要用到的一些数据库、网络组件
 	err := Init()
 	if err != nil {
 		panic(errors.New("main init failed"))
@@ -33,6 +33,14 @@ func main() {
 		testRouter := router.Group("")
 		testRouter.GET("/Ping", handlers.Ping)
 		testRouter.POST("/Ping", handlers.Ping)
+	}
+
+	{
+		useRrouter := router.Group("/user")
+		useRrouter.POST("/Login", handlers.Login)
+		useRrouter.POST("/Logout", handlers.Logout)
+		useRrouter.POST("/ChangePassword", handlers.ChangePassword)
+		useRrouter.GET("/GetUserDetail", handlers.GetUserDetail)
 	}
 
 	{
@@ -52,6 +60,7 @@ func main() {
 func Init() error {
 	// 当前进程的ID
 	util.ProcessID = util.NewID()
+	// 把配置文件里的内容读到当前进程的某个结构体内
 	err := config.Init("conf/conf.json")
 	if err != nil {
 		log.Println(fmt.Errorf("config init error: %v", err))
