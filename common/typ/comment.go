@@ -1,10 +1,14 @@
 package typ
 
 type CommentDetail struct {
-	CommentID uint
-	Children  []CommentDetail
-	LikeCount int
-	CreateAt  string
+	CommentID    uint
+	Content      string
+	UserID       uint
+	UserName     string
+	UserImageURL string
+	LikeCount    int
+	CreateAt     string
+	Children     []CommentDetail
 }
 
 type ListCommentResp struct {

@@ -12,6 +12,15 @@ const MaxStep = 50
 
 var MonitorKeysTTL = time.Minute * 3
 
+func HSet(key string, value map[string]interface{}) (int64, error) {
+	return rds.Client.HSet(context.Background(), key, value).Result()
+
+}
+
+func HGet(key, field string) (string, error) {
+	return rds.Client.HGet(context.Background(), key, field).Result()
+}
+
 // SetNX wrap rdb SetNX
 func SetNX(key string, value interface{}, expiration time.Duration) (bool, error) {
 	return rds.Client.SetNX(context.Background(), key, value, expiration).Result()
